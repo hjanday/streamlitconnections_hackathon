@@ -16,7 +16,7 @@ def load_data():
     params = { "id": "dinesafe"}
     package = requests.get(url, params = params).json()
     
-    pd_json_data = pd.read_json(package, orient='index')
+    pd_json_data = pd.read_json(package)
     return package
 
 st.title("Toronto Open Data Streamlit App")
