@@ -1,12 +1,12 @@
 '''
 pip install streamlit, requests and json
 '''
-#import streamlit as st 
+import streamlit as st 
 import requests
 import json
 import pandas as pd
 from io import StringIO
-#from streamlit.connections import ExperimentalBaseConnection as EBC
+from streamlit.connections import ExperimentalBaseConnection as EBC
 
 	
 
