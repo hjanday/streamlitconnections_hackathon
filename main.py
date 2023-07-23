@@ -5,24 +5,32 @@ pip install streamlit, requests and json
 import requests
 import json
 import pandas as pd
+from io import StringIO
 #from streamlit.connections import ExperimentalBaseConnection as EBC
 
 	
 
 
-def load_data():
+def load_data(nrows):
     base_url = "https://ckan0.cf.opendata.inter.prod-toronto.ca"
     url = base_url + "/api/3/action/package_show"
     params = { "id": "dinesafe"}
     package = requests.get(url, params = params).json()
+    dumped_data = None
+    for idx, resource in enumerate(package["result"]["resources"]):
     
-    pd_json_data = pd.read_json(package)
-    return package
-
-#st.title("Toronto Open Data Streamlit App")
-data = load_data()
-print(data)
-#st.write(data)
+        # for datastore_active resources:
+        if resource["datastore_active"]:
+    
+            # To get all records in CSV format:
+            url = base_url + "/datastore/dump/" + resource["id"]
+            dumped_data = requests.get(url).text
+            
+    pd_read_data = pd.read_csv(StringIO(dumped_data))        
+    return pd_read_data.head(nrows)
+st.title("Toronto Open Data Streamlit App")
+data = load_data(20)
+st.write(f'{data["Inspection ID"]}, {data["Establishment Status"]}')
 
 
 
