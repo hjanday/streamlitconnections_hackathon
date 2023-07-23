@@ -40,7 +40,7 @@ data = load_data(20)
 st.dataframe(data)
 
 st.subheader("Mapped Data")
-st.map(df, lat = data["Latitude"], lon = data["Longitude"])
+st.map(data, lat = data["Latitude"], lon = data["Longitude"])
 
 
 
