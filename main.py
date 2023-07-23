@@ -1,11 +1,11 @@
 '''
-pip install streamlit, requests and json, jikanpy-v4
+pip install streamlit, requests and json
 '''
-import streamlit as st 
+#import streamlit as st 
 import requests
 import json
 import pandas as pd
-from streamlit.connections import ExperimentalBaseConnection as EBC
+#from streamlit.connections import ExperimentalBaseConnection as EBC
 
 	
 
@@ -19,9 +19,10 @@ def load_data():
     pd_json_data = pd.read_json(package)
     return package
 
-st.title("Toronto Open Data Streamlit App")
+#st.title("Toronto Open Data Streamlit App")
 data = load_data()
-st.write(data)
+print(data)
+#st.write(data)
 
 
 
