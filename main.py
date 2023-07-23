@@ -30,7 +30,7 @@ def load_data(nrows):
     return pd_read_data.head(nrows)
 st.title("Toronto Open Data Streamlit App")
 data = load_data(20)
-st.write(f'{data["Inspection ID"]}, {data["Establishment Status"]}')
+st.dataframe(data)
 
 
 
