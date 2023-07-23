@@ -26,7 +26,8 @@ def load_data(nrows):
             url = base_url + "/datastore/dump/" + resource["id"]
             dumped_data = requests.get(url).text
             
-    pd_read_data = pd.read_csv(StringIO(dumped_data))        
+    pd_read_data = pd.read_csv(StringIO(dumped_data)) 
+    pd_read_data.rename(columns={"Latitude": "lat", "Longitude": "long"})     
     return pd_read_data.head(nrows)
 
 
