@@ -2,19 +2,20 @@
 pip install streamlit, requests and json, jikanpy-v4
 '''
 import streamlit as st 
-import requests as req
+import requests
 import json
 import pandas as pd
 from streamlit.connections import ExperimentalBaseConnection as EBC
 
 	
-base_url = "https://ckan0.cf.opendata.inter.prod-toronto.ca"
-url = base_url + "/api/3/action/package_show"
-params = { "id": "dinesafe"}
-package = requests.get(url, params = params).json()
 
 
 def load_data():
+    base_url = "https://ckan0.cf.opendata.inter.prod-toronto.ca"
+    url = base_url + "/api/3/action/package_show"
+    params = { "id": "dinesafe"}
+    package = requests.get(url, params = params).json()
+    
     pd_json_data = pd.read_json(package, orient='index')
     return pd_json_data.head()
 
