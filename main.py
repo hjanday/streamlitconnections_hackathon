@@ -27,7 +27,7 @@ def load_data(nrows):
             dumped_data = requests.get(url).text
             
     pd_read_data = pd.read_csv(StringIO(dumped_data)) 
-    pd_read_data.rename(columns={"Latitude": "lat", "Longitude": "long"})     
+    pd_read_data.rename(columns={"Latitude": "lat", "Longitude": "long"}, inplace=True)     
     return pd_read_data.head(nrows)
 
 
@@ -36,7 +36,7 @@ st.title("Toronto Open Data Streamlit App")
 
 st.text(("Sample Data Set From Dinesafe"))
 data = load_data(20)
-
+print(data)
 
 st.dataframe(data)
 
