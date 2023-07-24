@@ -35,7 +35,7 @@ def load_data(nrows):
 st.title("Toronto Open Data Streamlit App")
 
 st.text(("Sample Data Set From Dinesafe"))
-data = load_data(20)
+data = load_data(100000)
 print(data)
 
 st.dataframe(data)
