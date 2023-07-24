@@ -27,7 +27,7 @@ def load_data(nrows):
             dumped_data = requests.get(url).text
             
     pd_read_data = pd.read_csv(StringIO(dumped_data)) 
-    pd_read_data.rename(columns={"Latitude": "lat", "Longitude": "long"}, inplace=True)     
+    pd_read_data.rename(columns={"Latitude": "lat", "Longitude": "lon"}, inplace=True)     
     return pd_read_data.head(nrows)
 
 
@@ -41,7 +41,7 @@ print(data)
 st.dataframe(data)
 
 st.subheader("Mapped Data")
-st.map(data, latitude = data["lat"], longitude = data["long"])
+st.map(data, latitude = data["lat"], longitude = data["lon"])
 
 
 
