@@ -6,7 +6,7 @@ import requests
 import json
 import pandas as pd
 from io import StringIO
-from streamlit.connections import ExperimentalBaseConnection as EBC
+from streamlit.connections import ExperimentalBaseConnection
 from streamlit.runtime.caching import cache_data
 
 	
