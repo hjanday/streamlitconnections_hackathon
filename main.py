@@ -26,7 +26,7 @@ class DineSafeAPIConn(ExperimentalBaseConnection):
         return self._connect()
 
     @st.cache()
-    def get_dinesafe_data(nrows, **kwargs) -> pd.DataFrame:
+    def get_dinesafe_data(nrows) -> pd.DataFrame:
         cursor = self.conn_object()
         dumped_data = None
         for idx, resource in enumerate(cursor["result"]["resources"]):
