@@ -26,7 +26,7 @@ class DineSafeAPIConn(ExperimentalBaseConnection):
         return self._connect()
 
     
-    def get_dinesafe_data(nrows) -> pd.DataFrame:
+    def get_dinesafe_data() -> pd.DataFrame:
         cursor = self.conn_object()
         dumped_data = None
         for idx, resource in enumerate(cursor["result"]["resources"]):
@@ -39,7 +39,7 @@ class DineSafeAPIConn(ExperimentalBaseConnection):
             
         pd_read_data = pd.read_csv(StringIO(dumped_data)) 
         pd_read_data.rename(columns={"Latitude": "lat", "Longitude": "lon"}, inplace=True)
-        return pd_read_data.head(nrows)
+        return pd_read_data.head(100)
 
 
 # Create the application UI
@@ -49,6 +49,6 @@ st.text(("Sample Data Set From Dinesafe"))
 
 conn = st.experimental_connection("dinesafe-api", type=DineSafeAPIConn)
 
-df_data = conn.get_dinesafe_data(100)
+df_data = conn.get_dinesafe_data()
 st.dataframe(df_data)
 
