@@ -11,18 +11,18 @@ from streamlit.runtime.caching import cache_data
 
 	
 class DineSafeAPIConn(ExperimentalBaseConnection):
-    def return_url(self, **kwargs) -> str:
+    def return_url(self) -> str:
         base_url = "https://ckan0.cf.opendata.inter.prod-toronto.ca"
         return base_url
     
-    def _connect(self, **kwargs) -> requests.Session:
+    def _connect(self) -> requests.Session:
         url = self.return_url() + "/api/3/action/package_show"
         params = { "id": "dinesafe"}
         package = requests.get(url, params = params)
         session = requests.Session()
         return session
 
-    def conn_object(self, **kwargs):
+    def conn_object(self):
         return self._connect()
 
     @st.cache()
