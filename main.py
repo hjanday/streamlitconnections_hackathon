@@ -25,7 +25,7 @@ class DineSafeAPIConn(ExperimentalBaseConnection):
     def conn_object(self):
         return self._connect()
 
-    @st.cache()
+    
     def get_dinesafe_data(nrows) -> pd.DataFrame:
         cursor = self.conn_object()
         dumped_data = None
