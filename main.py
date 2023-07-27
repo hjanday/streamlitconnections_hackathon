@@ -48,7 +48,6 @@ st.title("Toronto Open Data Streamlit App")
 st.text(("Sample Data Set From Dinesafe"))
 
 conn = st.experimental_connection("dinesafe-api", type=DineSafeAPIConn)
-conn
 
 df_data = conn.get_dinesafe_data(100)
 st.dataframe(df_data)
