@@ -22,7 +22,7 @@ class DineSafeAPIConn(ExperimentalBaseConnection):
         session = requests.Session()
         return session
 
-    def conn_object(self):
+    def conn_object(self, **kwargs):
         return self._connect()
 
     @st.cache()
@@ -50,7 +50,7 @@ st.text(("Sample Data Set From Dinesafe"))
 conn = st.experimental_connection("dinesafe-api", type=DineSafeAPIConn)
 conn
 
-conn_cursor = conn.cursor()
+conn_cursor = conn.conn_object()
 df_data = conn_cursor.get_dinesafe_data(150)
 st.dataframe(df_data)
 
