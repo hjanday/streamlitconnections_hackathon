@@ -16,17 +16,17 @@ class DineSafeAPIConn(ExperimentalBaseConnection):
         return base_url
     
     def _connect(self) -> requests.Session:
+        url = self.return_url() + "/api/3/action/package_show"
+        params = { "id": "dinesafe"}
+        package = requests.get(url, params = params)
         session = requests.Session()
         return session
 
-    # def conn_object(self):
-    #     return self._connect()
+    def conn_object(self):
+        return self._connect()
 
     
     def get_dinesafe_data(self, nrows) -> pd.DataFrame:
-        url = self.return_url() + "/api/3/action/package_show"
-        params = { "id": "dinesafe"}
-        package = requests.get(url, params = params).json()
         
         dumped_data = None
         for idx, resource in enumerate(package["result"]["resources"]):
@@ -39,7 +39,7 @@ class DineSafeAPIConn(ExperimentalBaseConnection):
             
         pd_read_data = pd.read_csv(StringIO(dumped_data)) 
         pd_read_data.rename(columns={"Latitude": "lat", "Longitude": "lon"}, inplace=True)
-        return pd_read_data.head(15)
+        return pd_read_data.head(nrows)
 
 
 
